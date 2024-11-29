@@ -1,0 +1,163 @@
+@import url("https://fonts.googleapis.com/css2?family=Bungee+Spice&family=DynaPuff:wght@400..700&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nosifer&family=Notable&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik+Wet+Paint&family=Unlock&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+
+body {
+  background-color: rgb(41, 41, 41);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+header {
+  background-color: #2374ff;
+  text-align: center;
+  color: white;
+  text-transform: uppercase;
+  padding: 1.5rem;
+  font-size: 2rem;
+  font-weight: 700;
+  border-bottom: 4px solid #1a5cb2;
+  border-radius: 0 0 2rem 2rem;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.addTask {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  background-color: #1a1a1a;
+  padding: 3rem;
+  border-radius: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  width: 100%;
+}
+
+.newTask {
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 1rem;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.newTask input {
+  border: none;
+  outline: none;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: black;
+  width: 80%;
+}
+
+.newTask button {
+  background-color: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+}
+
+.newTask button:hover .icon {
+  color: #2374ff;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: #2b2b2b;
+  border-radius: 1rem;
+  margin-top: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  width: 100%;
+}
+
+.task h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  word-wrap: break-word;
+}
+
+.task .options {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.task button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease-in-out;
+}
+
+.task button:hover {
+  color: red;
+}
+
+.checkTask {
+  width: 1.5rem;
+  height: 1.5rem;
+  accent-color: #2374ff;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  header {
+    font-size: 1.5rem;
+  }
+
+  .addTask {
+    padding: 2rem;
+    gap: 2rem;
+  }
+
+  .newTask {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .newTask input {
+    width: 100%;
+  }
+
+  .task {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .task .options {
+    justify-content: space-between;
+  }
+}
