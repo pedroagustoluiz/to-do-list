@@ -1,20 +1,28 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { MdDeleteOutline } from "react-icons/md";
 
 function App() {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(() => {
+    const savedTasks = localStorage.getItem("tasks");
+    return savedTasks ? JSON.parse(savedTasks) : [];
+  });
+
   const [newTask, setNewTask] = useState("");
 
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
+
   const handleTask = () => {
-    if (newTask.trim()) {
-      const task = {
-        id: tasks.length + 1,
-        name: newTask.trim(),
-      };
-      setTasks([task, ...tasks]);
-      setNewTask(""); // Limpa o campo após adicionar
-    }
+    if (!newTask.trim()) return;
+
+    const task = {
+      id: Date.now(),
+      name: newTask.trim(),
+    };
+    setTasks([task, ...tasks]);
+    setNewTask("");
   };
 
   const removeTask = (id) => {
@@ -32,10 +40,8 @@ function App() {
           <div className="newTask">
             <input
               type="text"
-              name="task"
-              id="task"
-              placeholder="Digite aqui sua task..."
               value={newTask}
+              placeholder="Digite aqui sua task..."
               onChange={(ev) => setNewTask(ev.target.value)}
             />
             <button onClick={handleTask}>
@@ -43,25 +49,29 @@ function App() {
             </button>
           </div>
           <div className="allTasks">
-            {tasks.map((task) => (
-              <div className="task" key={task.id}>
-                <h2>{task.name}</h2>
-                <div
-                  className="options"
-                  style={{ display: "flex", gap: "1rem" }}
-                >
-                  <button onClick={() => removeTask(task.id)}>
-                    <MdDeleteOutline fontSize={25} className="removeTask" />
-                  </button>
-                  <input
-                    type="checkbox"
-                    name=""
-                    id={`checkTask-${task.id}`}
-                    className="checkTask"
-                  />
+            {tasks.length > 0 ? (
+              tasks.map((task) => (
+                <div className="task" key={task.id}>
+                  <h2>{task.name}</h2>
+                  <div
+                    className="options"
+                    style={{ display: "flex", gap: "1rem" }}
+                  >
+                    <button onClick={() => removeTask(task.id)}>
+                      <MdDeleteOutline fontSize={25} color="white" />
+                    </button>
+                    <input
+                      type="checkbox"
+                      name=""
+                      id="checkTask"
+                      className="checkTask"
+                    />
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))
+            ) : (
+              <p>Nenhuma tarefa adicionada.</p>
+            )}
           </div>
         </div>
       </main>
